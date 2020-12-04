@@ -5,7 +5,7 @@
       <img src="../assets/section.png" name="voiture" width="100%" height="100%">
     </section>
     <!----------------2 section--------------->
-    <section class="choix">
+    <div class="block">
       <!-- debut -->
       <div class="col-md-4 search-form">
         <form class="filter-form">
@@ -35,7 +35,8 @@
           <button class="select-form-btm find">TROUVER</button>
         </form>
       </div>
-    </section>
+    
+    </div>
     <!-- fin choix option -->
 
     <!-------------- 3 ---------->
@@ -63,16 +64,22 @@
     </section>
 
     <section class="text">
-      <h3>Pourquoi choisir Auto Clé Rapide
+      <div class="responsivetext">
+        <h2>Test</h2>
+      <p>
+        Pourquoi choisir Auto Clé Rapide
         Nous vous proposons un service de qualitée rapide
         pour vos doubles de clé.
         Ainsi que des solutions si vous avez perdues toutes vos clées
         sur tout l'ile de France
-        rendez vous sur notre page contact . </h3>
+        rendez vous sur notre page contact . 
+        </p>
+          
+      </div>
     </section>
 
     <section class="femme">
-      <img src="../assets/femme.png" alt="">
+      <img src="../assets/femme.png" name="femme" width="100%" height="100%">
     </section>
 
 
@@ -91,18 +98,13 @@
 </script>
 
 <style scoped>
-  .choix {
-    margin-top: 100px;
-    margin-bottom: 200px;
-
-  }
-
+ 
 
   select.select-input.select-brand {
     color: white;
     font: 18px Scope;
     background: black;
-    padding: 0px 0px 0px 50px;
+    padding: 0px 0px 0px 100px;
 
   }
 
@@ -110,25 +112,54 @@
     color: white;
     font: 18px Scope;
     background: black;
-    padding: 0px 0px 0px 50px;
+    padding: 0px 0px 0px 100px;
   }
 
   select.select-input.select-year {
     color: white;
     font: 18px Scope;
     background: black;
-    padding: 0px 0px 0px 50px;
+    padding: 0px 0px 0px 100px;
   }
 
   .granp {
     display: flex;
   }
+/* section choix */
+
+.block{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  margin-bottom: 200px;
+  
+}
+
+
+.text{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+.responsivetext{
+  padding: 8vh;
+
+}
 
 
 
+/* section texte
   .text {
+    border: 20px 100px 100px;
     margin-top: 100px;
+   
     background: greenyellow;
-    width: 50%;
-  }
+    width: 100%;
+  /*  */
 </style>

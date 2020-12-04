@@ -1,10 +1,33 @@
 <template>
 <div class="test">
+  <!-- bare recherche -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+
+<div class="container">
+  <form class="form-inline" action="/recherche/" method="get">
+    <fieldset>    
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <select id="oCategorie" name="oCategorie" class="form-control">
+            <option selected="selected" value="0">Catégorie</option>
+            <option value="1">...</option>
+          </select>
+        </div>
+        <input id="oSaisie" name="oSaisie" type="text" class="form-control" aria-label="Saisie de mots clés" required="required">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="submit">Recherche</button>
+        </div>
+      </div>
+    </fieldset> 
+  </form>
+</div>
+
+  <!-- fin barre de recherche -->
 
   <section class="our-publication pt-100 pb-70">
     <div class="container">
       <div class="section-header">
-        <h2>Nos Produit</h2>
+        <!-- <h2>Nos Produit</h2> -->
       </div>
       <div class="row">
         <div
@@ -20,13 +43,15 @@
                   :src="require(`@/assets/${produit.images[0].Image}.jpeg`)"
                   alt="Publication Image"
                   width="100%"
-                  height="200"
+                  height="300"
                 />
               </a>
             </figure>
 
             <div class="publication-content">
               <h3>
+                <a href="">{{ produit.marque }}</a>
+                <a href="">{{ produit.modele }}</a>
                 <a href="">{{ produit.ref }}</a>
               </h3>
               <p class="text-block">{{ produit.description }}</p>
@@ -41,7 +66,7 @@
                   produit.prix,
                   produit.images[0].Image)"
                 class="default-btn"
-                >Add to Cart</a
+                >Ajouter au panier</a
               >
             </div>
           </div>
@@ -132,7 +157,7 @@ export default {
   text-align: center;
 }
 .section-header i {
-  color: #ff007d;
+  color: blue;
   font-size: 50px;
   display: inline-block;
   margin-bottom: 10px;
@@ -181,7 +206,7 @@ export default {
 
 .single-publication .publication-content .price {
   font-size: 18px;
-  color: #ff007d;
+  color: #0FA3B1;
 }
 .single-publication .publication-content .price h4 {
   color: #6f6f6f;
@@ -223,9 +248,9 @@ export default {
   font-size: 14px;
 }
 .default-btn {
-  background-color: #ff007d;
+  background-color: cyan;
   color: #fff;
-  border: 1px solid #ff007d;
+  border: 1px solid black;
   display: inline-block;
   padding: 10px 30px;
   border-radius: 30px;
