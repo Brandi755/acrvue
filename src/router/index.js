@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/produit.vue'
 import register from '../components/register.vue'
+// import validemail from '../components/validemail.vue'
+
 import profil from '../components/profil.vue'
 import panier from '../views/panier.vue'
 import paypal from '../components/paypal.vue'
@@ -16,7 +18,7 @@ Vue.use(VueRouter)
 const routes = [{
         path: "/",
         name: "Home",
-        component: Home
+        component: Home,
     },
     {
         path: '/about',
@@ -33,6 +35,15 @@ const routes = [{
         component: register
 
     },
+    {
+        path: "/validemail",
+        name: "/validemail",
+        component: () =>
+            import ("../components/validermail.vue"),
+
+
+    },
+
     {
         path: "/register",
         name: "register",

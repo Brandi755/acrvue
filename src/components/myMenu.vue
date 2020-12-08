@@ -12,7 +12,6 @@
       <b-navbar-nav>
         <b-nav-item href="/About">Accueil</b-nav-item>
         <b-nav-item href="/">Clés</b-nav-item>
-        
         <b-nav-item href="/panier">Panier</b-nav-item>
         <b-nav-item href="/register">s'inscrire</b-nav-item>
         <b-nav-item href="/login">se connecter</b-nav-item>

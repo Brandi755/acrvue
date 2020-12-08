@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="text-center bg-color">
     <h1>Login</h1>
     <div class="login-form">
@@ -29,6 +30,10 @@
       </form>
     </div>
   </div>
+
+  </div>
+
+  
 </template>
 <script>
 import jwt from "vue-jwt-decode";
@@ -186,3 +191,4 @@ export default {
   color: #002bff;
 }
 </style>
+
