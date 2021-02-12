@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="container">
     <div class="col-6 offset-3">
       <div class="card bg-light">
@@ -11,7 +11,7 @@
             {{ error }}
           </div>
           <form>
-            <div class="form-group">
+            <div class="form- group">
               <label for="amount">Amount</label>
               <div class="input-group">
                 <div class="input-group-prepend">

@@ -1,102 +1,47 @@
 <template>
-<div class="test">
-  <!-- bare recherche -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-
-<div class="container">
-  <form class="form-inline" action="/recherche/" method="get">
-    <fieldset>    
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <select id="oCategorie" name="oCategorie" class="form-control">
-            <option selected="selected" value="0">Catégorie</option>
-            <option value="1">...</option>
-          </select>
-        </div>
-        <input id="oSaisie" name="oSaisie" type="text" class="form-control" aria-label="Saisie de mots clés" required="required">
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="submit">Recherche</button>
-        </div>
-      </div>
-    </fieldset> 
-  </form>
-</div>
-
-  <!-- fin barre de recherche -->
-
-  <section class="our-publication pt-100 pb-70">
-    <div class="container">
-      <div class="section-header">
-        <!-- <h2>Nos Produit</h2> -->
-      </div>
-      <div class="row">
-        <div
-          class="col-sm-6 col-lg-3"
-          v-for="produit in produits"
-          :key="produit.id"
-        >
-          <div class="single-publication">
-            <figure>
-              <a>
-                <img
-                  v-if="produit.images[0] !== undefined"
-                  :src="require(`@/assets/${produit.images[0].Image}.jpeg`)"
-                  alt="Publication Image"
-                  width="100%"
-                  height="300"
-                />
-              </a>
-            </figure>
-
-            <div class="publication-content">
-              <h3>
-                <a href="">{{ produit.marque }}</a>
-                <a href="">{{ produit.modele }}</a>
-                <a href="">{{ produit.ref }}</a>
-              </h3>
-              <p class="text-block">{{ produit.description }}</p>
-              <h4 class="price">{{ produit.prix }}</h4>
-            </div>
-
-            <div class="add-to-cart">
-              <a
-                @click="ajouter(
-                  produit.id, 
-                  produit.nom, 
-                  produit.prix,
-                  produit.images[0].Image)"
-                class="default-btn"
-                >Ajouter au panier</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="single-publication">
+    <figure>
+      <a>
+        <img v-if="produit.images[0] !== undefined"
+          :src="require(`@/assets/${produit.images[0].Image}.jpeg`)"
+          alt="Publication Image"
+          width="100%"
+          height="300"
+        />
+      </a>
+    </figure>
+    <div class="publication-content">
+      <h3>
+        <a href="">{{ produit.marque }}</a>
+        <br />
+        <a href="">{{ produit.modele }}</a>
+      </h3>
+      <p class="text-block">{{ produit.description }}</p>
+      <h4 class="price">{{ produit.prix }}</h4>
     </div>
-  </section>
-</div>
+
+    <div class="add-to-cart">
+      <a @click="ajouter(produit.id, produit.nom, produit.prix, produit.images[0].Image)"
+        class="default-btn">Ajouter au panier </a>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "myproduit",
-  props: ["produits"],
+  props: ["produit"],
   data() {
     return {
       Panier: [],
     };
   },
-  created() {
-    console.log(this.produits);
-    this.getLocalStorage();
-  },
   methods: {
     ajouter: function(id, nom, prix, image) {
-      alert(` le produit ${nom}`);
-      this.Panier = this.Panier || [];
+      this.getLocalStorage();
+      var parsedobj = JSON.parse(JSON.stringify(this.Panier))
+      console.log("this.Panier parsedobj avant :>", parsedobj);
       localStorage.removeItem("panier");
-
-      if (this.Panier.length === 0) {
+      if (this.Panier.length === 0) { // si panier vide ajoute produit
         let quantite = 1;
         this.Panier.push({
           produitId: id,
@@ -115,7 +60,7 @@ export default {
             alreadyProduit = true;
           }
         });
-        if (alreadyProduit === false) {
+        if (alreadyProduit === false) { //
           let quantite = 1;
           this.Panier.push({
             produitId: id,
@@ -128,13 +73,12 @@ export default {
         }
       }
       localStorage.setItem("panier", JSON.stringify(this.Panier));
+      console.log("this.Panier apres :>", this.Panier);
     },
-
     getLocalStorage() {
       let getlocalSt = localStorage.getItem("panier");
-      if (getlocalSt != null || getlocalSt !== undefined) {
+      if (getlocalSt != null && getlocalSt != undefined) {
         this.Panier = JSON.parse(getlocalSt);
-        console.log(this.Panier);
       }
     },
   },
@@ -145,31 +89,6 @@ export default {
 .text-block {
   height: 80px;
   overflow: auto;
-}
-.pt-100 {
-  padding-top: 100px;
-}
-.pb-70 {
-  padding-bottom: 70px;
-}
-.section-header {
-  margin-bottom: 60px;
-  text-align: center;
-}
-.section-header i {
-  color: blue;
-  font-size: 50px;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-.section-header h2 {
-  font-weight: bold;
-  font-size: 34px;
-  margin: 0;
-}
-.section-header p {
-  max-width: 500px;
-  margin: 20px auto 0;
 }
 .single-publication {
   border: 1px solid #f2eee2;
@@ -201,12 +120,13 @@ export default {
   color: #1f2d30;
 }
 .single-publication .publication-content h3 a:hover {
-  color: #ff007d;
+  color: #2200ff;
+  text-decoration: none;
 }
 
 .single-publication .publication-content .price {
   font-size: 18px;
-  color: #0FA3B1;
+  color: black;
 }
 .single-publication .publication-content .price h4 {
   color: #6f6f6f;
@@ -232,8 +152,8 @@ export default {
 }
 .single-publication:hover .add-to-cart {
   visibility: visible;
-  transform: scale(1);
-  -webkit-transform: scale(1);
+  /* transform: scale(1);
+  -webkit-transform: scale(1); */
   opacity: 1;
 }
 .single-publication .add-to-cart .default-btn {
@@ -248,18 +168,18 @@ export default {
   font-size: 14px;
 }
 .default-btn {
-  background-color: cyan;
-  color: #fff;
-  border: 1px solid black;
+  background-color: #007BFF;
+  color: #FFFFFF !important;
   display: inline-block;
   padding: 10px 30px;
-  border-radius: 30px;
+  border-radius: 10px;
   text-transform: uppercase;
   font-weight: 600;
   font-family: "Open Sans", sans-serif;
+  cursor: pointer;
 }
-a:hover {
+/* a:hover {
   color: #fff;
   text-decoration: none;
-}
+} */
 </style>

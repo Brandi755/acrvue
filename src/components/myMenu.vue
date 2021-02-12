@@ -1,54 +1,124 @@
 <template>
-  <div class="B">
-  
-  <!-- test -->
-  <div>
-  <b-navbar toggleable="lg" type="dark" variant="info">
-    <b-navbar-brand href="#"><img src="../assets/logoacr.png" alt="" width="50"></b-navbar-brand>
+<!-- <div class="wrap"> -->
+  <ScaleRotate >
 
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+    <h3 v-if="login == true"> Vous êtes connecté en tant que {{decodedToken.email}} </h3>
+    <h3 v-if="login == false"> Vous n'êtes pas connecté </h3>
+    
+    <a href="/Accueil">
+      <span>Accueil</span>
+    </a>
+     <a href="/propos">
+      <span>A propos</span>
+    </a>
+     <a href="/produit">
+      <span>Produits</span>
+    </a> 
+      <!-- <a href="/produit">
+      <span>Dépannage serrurie</span>
+    </a>  -->
+    <a href="/devis">
+      <span>Devis</span>
+    </a> 
+    <a href="/Panier">
+      <span>Panier</span>
+    </a>
+     <a href="/profil">
+      <span>Mon profil</span>
+    </a> 
+    <a href="/login" v-if="login == false">
+      <span>Login</span>
+    </a>
+    <a href="/register" v-if="login == false">
+      <span>Register</span>
+    </a>
+    <a href="#" v-on:click="logout" v-if="login == true">
+      <span>Logout</span>
+    </a>
 
-    <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav>
-        <b-nav-item href="/About">Accueil</b-nav-item>
-        <b-nav-item href="/">Clés</b-nav-item>
-        <b-nav-item href="/panier">Panier</b-nav-item>
-        <b-nav-item href="/register">s'inscrire</b-nav-item>
-        <b-nav-item href="/login">se connecter</b-nav-item>
-
-
-       
-      </b-navbar-nav>
-
-      <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto">
-        <b-nav-form>
-          <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
-          <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-        </b-nav-form>
-
-
-        <b-nav-item-dropdown right>
-          <!-- Using 'button-content' slot -->
-          <template #button-content>
-            <em>User</em>
-          </template>
-          <b-dropdown-item href="/register">Profile</b-dropdown-item>
-          <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-        </b-nav-item-dropdown>
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
-</div>
+  </ScaleRotate>
+<!--  -->
+  <!-- <div class="container">
+   
+    <h3 v-if="login == true"> Vous etes connecter en tant que {{decodedToken.email}} </h3>
+    <h3 v-if="login == false"> Vous n'etes pas connecter </h3>
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="/" class="nav-link">Home</a>
+      </li> 
+       <li class="nav-item">
+        <a href="/produit" class="nav-link">Produit</a>
+      </li>  
+      <li class="nav-item">
+        <a href="/login" class="nav-link">LogIn</a>
+      </li>  
+      <li class="nav-item">
+        <a href="/register" class="nav-link">SignIn</a>
+      </li>    
+      <li class="nav-item">
+        <a href="#" v-on:click="logout" class="nav-link">Log Out</a>
+      </li> 
+    </ul>
+    </nav>
   </div>
+</div> -->
+
 </template>
 
 <script>
+import jwt_decode from "jwt-decode";
+// import { Slide } from 'vue-burger-menu'
+// import { PushRotate } from 'vue-burger-menu'
+import { ScaleRotate } from 'vue-burger-menu'
+
+function logout() {
+  localStorage.removeItem('token');
+  this.$router.push({ name: "Accueil" });
+}
+
 export default {
-  name: "myMenu",
-};
+  name: "MyMenu",
+  components: {
+    // Slide,
+    // PushRotate,
+    ScaleRotate,
+  },
+  data() {
+    return {
+      decodedToken: {},
+      login: false,
+    }
+  },
+  methods: {
+    logout,
+  },
+  created() { // Verifier si le token a pas expirer 
+    const mytoken = localStorage.getItem('token');
+    console.log("mytoken = ", mytoken)
+    if (mytoken)
+    {
+      this.login = true;
+      this.decodedToken = jwt_decode(mytoken);
+      console.log("this.decodedToken = ", this.decodedToken);
+    }
+  }
+}
+
+// const menuIcon = document.querySelector(".hamburger-menu");  
+// const navbar = document.querySelector(".navbar");
+
+// menuIcon.addEventListener("click", () => {
+//   navbar.classList.toggle("change");
+// });
+
 </script>
 <style scoped>
 
+h3{
+  color:#0091CA;
+  font-size: 20px;
+  right: 100px;
+  
+}
 
 </style>

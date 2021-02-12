@@ -1,14 +1,15 @@
 <template>
   <div>
-    <Mypanier :panier="panier" />
+  <!-- mon component devient une balise -->
+    <MyPanier :panier="panier" />
   </div>
 </template>
 
 <script>
-import Mypanier from "../components/Mypanier";
+import MyPanier from "../components/MyPanier";
 export default {
   components: {
-    Mypanier,
+    MyPanier,
   },
   data() {
     return {

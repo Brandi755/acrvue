@@ -1,23 +1,26 @@
 <template>
-  <div>
-    <Myproduit :produits="produits" />
+<div class="wrap">
+    <!-- test 1 -->
+  
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+ 
+    <MyProduits :produits="produits" />
   </div>
 </template>
 
 <script>
-import Myproduit from "../components/myproduit";
+import MyProduits from "../components/MyProduits";
 
 export default {
-  name: "produit",
   data() {
     return {
       produits: {},
     };
   },
   components: {
-    Myproduit,
+    MyProduits,
   },
-  created() {
+  mounted() {
     this.axios
       .get("http://localhost:3000/produit/all")
       .then((res) => {
@@ -30,4 +33,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+/* .search{
+  background-color: blue;
+  border: rebeccapurple;
+  height: 100px;
+  width: 400px;
+} */
+</style>

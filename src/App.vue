@@ -1,23 +1,31 @@
 <template>
     <div id="app">
-        <myMenu/>
-        <router-view/>
+        <MyMenu />
+        <router-view id="page-wrap"/>
     </div>
 </template>
 <script>
-  import myMenu from './components/myMenu.vue'
+  import MyMenu from "./components/MyMenu.vue";
   export default {
-        components: {myMenu}
+        components: {
+            MyMenu,
+        }
     }
 </script>
 
 <style>
+    body {
+        background-color: #fff !important;
+        height: 100%;
+    }
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
-        color: #2c3e50;
+        /* color: #2c3e50; */
+        color:black;
+        height: 100%;
     }
 
     #nav {
