@@ -1,4 +1,5 @@
 <template>
+<div class="wrap">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6 mx-auto p-0">
@@ -53,26 +54,26 @@
                     </button>
                   </div>
                   <div class="hr"></div>
-                  <div class="foot"><a href="#">Mot de passe oublier?</a></div>
+                  <div class="foot"><a href="./sendforgetpwd">Mot de passe oublier?</a></div>
                 </div>
                 <div class="sign-up-form">
                   <div class="group">
-                    <label for="pass" class="label">adresse e-mail</label>
+                    <label for="email" class="label">adresse e-mail</label>
                     <input
                       v-on:keyup.enter="doregister"
                       v-model="email"
-                      id="pass"
+                      id="email"
                       type="text"
                       class="input"
                       placeholder="Entrez votre adresse e-mail"
                     />
                   </div>
                   <div class="group">
-                    <label for="pass" class="label">Mot de passe</label>
+                    <label for="passRegister" class="label">Mot de passe</label>
                     <input
                       v-on:keyup.enter="doregister"
                       v-model="password"
-                      id="pass"
+                      id="passRegister"
                       type="password"
                       class="input"
                       data-type="password"
@@ -80,13 +81,13 @@
                     />
                   </div>
                   <div class="group">
-                    <label for="pass" class="label"
+                    <label for="rePassRegister" class="label"
                       >Répéter le mot de passe</label
                     >
                     <input
                       v-on:keyup.enter="doregister"
                       v-model="repassword"
-                      id="pass"
+                      id="rePassRegister"
                       type="password"
                       class="input"
                       data-type="password"
@@ -113,21 +114,35 @@
         </div>
       </div>
     </div>
+    <v-snackbar v-model="snackbar">
+      {{snackbarText}}
+      <template v-slot:action="{ attrs }">
+        <v-btn color="pink"
+          text
+          v-bind="attrs"
+          @click="snackbar = false">
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
+  </div>
   </div>
 </template>
+
 <script>
+import api from "./../server";
 
 function dologin() {
   console.log(this.login);
   this.axios
-    .post("http://localhost:3000/user/login", {
+    .post(api + "/user/login", {
       email: this.emaillogin,
       password: this.passwordlogin,
     })
     .then((res) => {
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
-        this.$router.push({ name: "Home" });
+        this.$router.push({ name: "accueil" });
         window.location.reload();
       } else {
         this.$router.push({
@@ -137,37 +152,67 @@ function dologin() {
       }
     })
     .catch((err) => {
+      this.snackbarText = "votre mot de passe ou votre email est incorrect ou votre compte n'a pas été valider"
+      this.snackbar = true;
       console.log(err);
     });
 }
 
 function doregister() {
+
+  function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
   if (this.password !== this.repassword) {
     alert("Les 2 mots de passes sont incorrecte merci de recommencer !");
     return;
   }
-  this.axios
-    .post("http://localhost:3000/user/register", {
+  if (!validateEmail(this.email)) {
+    alert("Veillez entrer un adresse email valide pour vous inscrire un mail de confirmation vas vous être envoyer.");
+    return;
+  }
+
+  this.axios.post(api + "/user/register", {
       email: this.email,
       password: this.password,
-    })
-    .then((res) => {
-      console.log(res);
-      if (res.data.token) {
-        localStorage.setItem("token", res.data.token);
-        /* une fois les donnes recperer et stockés il va nous renvoyer sur home */
-        this.$router.push({ name: "login" });
-        window.location.reload();
-      } else {
-        this.$router.push({
-          name: "register",
-          params: { msg: "non connecté" },
-        });
-      }
-    })
-    .catch((err) => {
-      console.log("err:", err);
-    });
+  })
+
+  .then((res) => {
+    console.log(res);
+    if (res.status == 200) {
+      // revoyer sur la tab login
+      document.getElementById("tab-1").checked = true;
+      // evoyer email de confiration
+      const url = api + "/user/sendvalidemail";
+      this.axios.post(url, {email: this.email}).then((response) => {
+        console.log('response.data :>> ', response.data);
+        this.snackbarText = "Votre compte a été crée. Un lien de validation vous à été envoyer !";
+        this.snackbar = true;
+      }).catch((err) => {
+        console.log(err);
+      });
+    } else {
+      alert("else");
+      this.$router.push({
+        name: "register",
+        params: { msg: "non connecté" },
+      });
+    }
+  })
+
+  .catch((err) => {
+    if ( err && err.response&& err.response.status == 401) {
+      this.snackbarText = "Cet email est déjà utilisé.";
+      this.snackbar = true;
+    }
+    else {
+      this.snackbarText = "Erreur de base de données";
+      this.snackbar = true;
+    }
+    console.log('err :>> ', err);
+  });
 }
 
 export default {
@@ -181,26 +226,26 @@ export default {
       // Login VARAIBLE
       emaillogin: "",
       passwordlogin: "",
+      // snackbar
+      snackbar: false,
+      snackbarText: "",
     };
-    
   },
   components: {},
   methods: {
     dologin,
     doregister,
-
   },
   created() {
     const mytoken = localStorage.getItem('token');
     if (mytoken) {
-      this.$router.push({ name: "Home" });
+      this.$router.push({ name: "accueil" });
     }
   },
   mounted() {
     const signUpButton = document.getElementById("tab-2");
     if (window.location.pathname == "/register") {
-      console.log("On est dans le / register")
-        signUpButton.checked = true;
+      signUpButton.checked = true;
     }
   },
 };
@@ -224,18 +269,20 @@ body {
 }
 
 .login-box {
+
   width: 100%;
   margin: auto;
   max-width: 525px;
   min-height: 670px;
   position: relative;
-  background: url(https://images.unsplash.com/photo-1507208773393-40d9fc670acf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1268&q=80)
-    no-repeat center;
+  /* background: url(https://images.unsplash.com/photo-1507208773393-40d9fc670acf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1268&q=80)
+    no-repeat center; */
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 .login-snip {
+
   width: 100%;
   height: 100%;
   position: absolute;

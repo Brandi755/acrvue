@@ -1,11 +1,17 @@
 <template>
   <div class="wrap">
+
+     <div class="logo">
+      <img src="../assets/logost.png" class="logoimg" />
+     </div>
+
     <div class="titre">
-      <h4>Nos produits</h4>
+      <h4>Acheter votre clé en quelques clics</h4>
     </div>
-    <img src="../assets/corbeille.png"
-      class="imgp">
-    <!-- bare recherche -->
+  
+    <!-- <img src="../assets/corbeille.png" class="imgp" /> -->
+    <span> <br><br> <b>Rechercher une marque spécifique</b> </span>
+    <!-- barre recherche -->
     <div class="searchtest">
       <link
         rel="stylesheet"
@@ -37,7 +43,7 @@
       </div>
     </div>
     <!-- fin barre de recherche -->
-    <section class="our-publication pt-100 pb-70">
+    <section class="our-publication pt-10 pb-70">
       <div class="container">
         <div class="section-header">
           <!-- <h2>Nos Produits</h2> -->
@@ -62,6 +68,11 @@ import api from "./../server";
 
 
 function sendForm() {
+  if (!this.marque) {
+    this.axios.get("http://localhost:3000/produit/all")
+      .then((res) => {this.produits = res.data.produits;})
+      .catch((err) => {alert(err);});
+  }
   const url = api + "/produit/findBy/" + this.marque;
   this.axios.get(url).then(response => {
     this.produits = response.data.produits;
@@ -86,6 +97,10 @@ export default {
 </script>
 
 <style scoped>
+.logo img{
+  width: 300px;
+  margin-top: 40px;
+}
 
 .imgp{
   width: 2%;
@@ -94,8 +109,8 @@ export default {
   height: 80px;
   overflow: auto;
 }
-.pt-100 {
-  padding-top: 100px;
+.pt-10 {
+  padding-top: 10px;
 }
 .pb-70 {
   padding-bottom: 70px;

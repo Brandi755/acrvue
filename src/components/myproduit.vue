@@ -15,33 +15,50 @@
         <a href="">{{ produit.marque }}</a>
         <br />
         <a href="">{{ produit.modele }}</a>
+      <br/>
+        <a href="">{{ produit.annee }}</a>
+
+        
       </h3>
       <p class="text-block">{{ produit.description }}</p>
       <h4 class="price">{{ produit.prix }}</h4>
     </div>
-
+<!-- la snackbar -->
     <div class="add-to-cart">
       <a @click="ajouter(produit.id, produit.nom, produit.prix, produit.images[0].Image)"
         class="default-btn">Ajouter au panier </a>
     </div>
+     <v-snackbar v-model="snackbar">
+      Le produit a bien été ajouté au panier
+      <template v-slot:action="{ attrs }">
+        <v-btn color="pink"
+          text
+          v-bind="attrs"
+          @click="snackbar = false">
+          Fermer
+        </v-btn>
+      </template>
+        </v-snackbar>
   </div>
 </template>
 
+
 <script>
+
 export default {
   props: ["produit"],
   data() {
     return {
       Panier: [],
+      snackbar: false,
     };
   },
   methods: {
     ajouter: function(id, nom, prix, image) {
-      this.getLocalStorage();
-      var parsedobj = JSON.parse(JSON.stringify(this.Panier))
-      console.log("this.Panier parsedobj avant :>", parsedobj);
+      this.getLocalStorage();     
       localStorage.removeItem("panier");
       if (this.Panier.length === 0) { // si panier vide ajoute produit
+        
         let quantite = 1;
         this.Panier.push({
           produitId: id,
@@ -50,7 +67,9 @@ export default {
           prix_unitaire: prix,
           soustotal: quantite * prix,
           image: image,
+           
         });
+        
       } else {
         let alreadyProduit = false;
         this.Panier.forEach((item) => {
@@ -73,7 +92,9 @@ export default {
         }
       }
       localStorage.setItem("panier", JSON.stringify(this.Panier));
-      console.log("this.Panier apres :>", this.Panier);
+      // ici
+      
+        this.snackbar = true;
     },
     getLocalStorage() {
       let getlocalSt = localStorage.getItem("panier");
@@ -82,7 +103,11 @@ export default {
       }
     },
   },
+  created() {
+    console.log('this.produit :>> ', this.produit);
+  }
 };
+
 </script>
 
 <style scoped>
@@ -107,6 +132,7 @@ export default {
 }
 
 .single-publication .publication-content {
+  background: white;
   text-align: center;
   padding: 20px;
 }

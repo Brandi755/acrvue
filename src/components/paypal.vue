@@ -47,7 +47,7 @@
               class="btn btn-primary btn-block"
               @click.prevent="payWithCreditCard"
             >
-              Pay with Credit Card
+              Pay with Credit Card !!!!
             </button>
             <hr />
             <div id="paypalButton"></div>
@@ -57,9 +57,12 @@
     </div>
   </div>
 </template>
+
 <script>
 import braintree from "braintree-web";
 import paypal from "paypal-checkout";
+import api from "./../server";
+
 export default {
   data() {
     return {
@@ -71,10 +74,14 @@ export default {
   },
   created() {
     // eslint-disable-next-line no-console
-    console.log("this.$route.params.total", this.$route.params.total);
+    console.log("this.$route.params.total :> ", this.$route.params.total);
+    console.log("this.$route.params.payload :> ", this.$route.params.payload);
     if (this.$route.params.total !== undefined) {
       this.amount = this.$route.params.total;
     } else {
+      this.$router.push("/panier");
+    }
+    if (!this.$route.params.payload || !this.$route.params.payload.userId || !this.$route.params.payload.info || !this.$route.params.payload.nom || !this.$route.params.payload.prenom || !this.$route.params.payload.adresse_facturation || !this.$route.params.payload.adresse_livraison) {
       this.$router.push("/panier");
     }
   },
@@ -87,8 +94,25 @@ export default {
           .tokenize()
           .then((payload) => {
             // eslint-disable-next-line no-console
-            console.log(payload);
             this.nonce = payload.nonce;
+            // Crée la cammade
+            const axiosPayload =  this.$route.params.payload;
+            this.axios.post(api + "/commande/new", axiosPayload)
+            .then((res) => {
+              if (res.status == 200) {
+                alert('COMMANDE OK');
+                localStorage.removeItem("panier");
+                setTimeout(() => {
+                  this.$router.push({ name: "accueil" });
+                }, 2000);
+              }
+            })
+            .catch((err) => {
+              alert("error");
+              console.log(err);
+            });
+            // Snackbar
+            // redirection
           })
           .catch((err) => {
             // eslint-disable-next-line no-console
@@ -162,7 +186,7 @@ export default {
                 .tokenizePayment(data)
                 .then((payload) => {
                   // eslint-disable-next-line no-console
-                  console.log(payload);
+                  console.log("payload :>> ", payload);
                   this.error = "";
                   this.nonce = payload.nonce;
                 });

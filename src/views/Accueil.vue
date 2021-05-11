@@ -1,63 +1,60 @@
 <template>
   <div class="wrap">
-    <!----------------2 section--------------->
-    <!-- <img
-      src="../assets/voiture.png"
-      name="voiture"
-      class="img"/> -->
-     
-        <div class="logo">
-          <!-- <h6>Autoclerapide</h6> -->
-        <img src="../assets/logost.png"
-        class="logoimg">
-      
-           
+    <div class="acceuil-wrap">
+      <div class="logo">
+        <img src="../assets/logost.png" class="logoimg" />
       </div>
-<div class="titre">
-    <h4>Trouver votre clé en quelques clics</h4>
-    </div>
-    <div class="block">
-      <div class="container">
-        <div class="col-md-4 search-form">
-          <div class="form-group">
-            <vSelect
-              :options="optionsMarque"
-              v-model="marque"
-              @input="afterMarque"/>
+      <div class="titre">
+        <h4>Trouver votre clé en quelques clics</h4>
+      </div>
+      <div class="block">
+        <div class="container">
+          <div class="col-md-4 search-form">
+            <div class="form-group">
+              <vSelect
+                class="vSelect"
+                :options="optionsMarque"
+                v-model="marque"
+                @input="afterMarque"
+              />
+            </div>
+            <div class="form-group">
+              <vSelect
+                class="vSelect"
+                :options="optionsModele"
+                v-model="modele"
+                v-if="marque"
+                @input="afterModele"
+              />
+            </div>
+            <div class="form-group">
+              <vSelect
+                class="vSelect"
+                :options="optionsYear"
+                v-model="annee"
+                v-if="modele && marque"
+              />
+            </div>
+            <button
+              class="select-form-btm"
+              @click="sendForm"
+              v-if="annee && modele && marque"
+            >
+              TROUVER
+            </button>
           </div>
-          <div class="form-group">
-            <vSelect
-              :options="optionsModele"
-              v-model="modele"
-              v-if="marque"
-              @input="afterModele"/>
-          </div>
-          <div class="form-group">
-            <vSelect
-              :options="optionsYear"
-              v-model="annee"
-              v-if="modele && marque"
-            />
-          </div>
-          <button
-            class="select-form-btm"
-            @click="sendForm"
-            v-if="annee && modele && marque"
-          >
-            TROUVER
-          </button>
+        </div>
+        <!-- fin choix option -->
+        <!-------------- 3 ---------->
+      </div>
+      <!-------------- composant qui s'affiche une fois le prduit trouve ---------->
+      <div class="find" v-if="res.prix">
+        <div class="result">
+          <MyProduit :produit="res" />
         </div>
       </div>
-      <!-- fin choix option -->
-      <!-------------- 3 ---------->
     </div>
-    <!-------------- composant qui s'affiche une fois le prduit trouve ---------->
-    <div class="find">
-      <div class="result">
-        <MyProduit v-if="res" :produit="res" />
-        <!-- resultat cle -->
-      </div>
-    </div>
+    <MyFooter />
   </div>
 </template>
 
@@ -65,7 +62,11 @@
 import api from "./../server.js";
 import vSelect from "vue-select";
 import MyProduit from "./../components/MyProduit";
+import MyFooter from "./../components/MyFooter";
+
 import "vue-select/dist/vue-select.css";
+// test 
+// import MyFooter from "./../components/MyFooter";
 
 
 function sendForm() {
@@ -153,7 +154,8 @@ function getMarque() {
 export default {
   components: {
     vSelect,
-    MyProduit
+    MyProduit,
+    MyFooter,
   },
   methods: {
     sendForm,
@@ -169,86 +171,83 @@ export default {
       optionsMarque: [],
       optionsModele: [],
       optionsYear: [],
-      res: {},
+      res: {}
     };
   },
   mounted() {
     this.getMarque();
+    // setTimeout(() => {
+    //   console.log('typeof res.prix :>> ', typeof  this.res.prix);
+    //   console.log(" §§§§ this.res", this.res);
+    // }, 6000);
+    // console.log('typeof res.prix :>> ', typeof  this.res.prix);
+    // console.log(" §§§§ this.res", this.res);
   }
 };
 </script>
 
-<style scoped>
+<style scoped >
 .wrap {
+  display: flex;
+  flex-direction: column;
   z-index: -1;
   width: 100%;
-  height: 100%;
-  justify-content: space-evenly;
-  background-image: url('../assets/voiture.png');
-   background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #464646;
+  height: auto;
+  justify-content: space-between;
+
 }
-.img{
+.acceuil-wrap {
+   display: flex;
+   flex-grow: 1;
+  flex-direction: column;
+  background-image: url("../assets/voiture.png");
+  background-position: right top;
+  background-repeat: no-repeat;
+  /*background-attachment: fixed;*/
+  background-size: auto 100%;
+  background-color: white;
+
+}
+.img {
   position: absolute;
   left: 0;
   width: 100%;
 }
-.logoimg{
-  width:200px;
-  margin-top: 40px;
+.logoimg {
+  width: 300px;
+  margin-top: 80px;
 }
-.logotitle{
+.logotitle {
   display: flex;
   justify-content: center;
 }
 
-h3{
-
+h3 {
   margin-top: 200px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
-  
 }
-.titre{
+.titre {
   position: relative;
-   align-items: center;
+  align-items: center;
   margin-top: 90px;
-  }
+}
 
-button{
-  
-  /* background-color: black;
-  color: white;
-  border-radius: 5px;
-  background-top */
-
-
-   background: black;
-   border-radius: 10px;
-   color: #FFFFFF;
-   font-family: Arial;
-   font-size: 17px;
-   font-weight: 700;
+button {
+  background: black;
+  border-radius: 10px;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  font-weight: 700;
   height: 40px;
   width: 130px;
-   
-  
-   /* box-shadow: 1px 1px 6px 0 rgb(228, 230, 237); */
-   
- 
-   cursor: pointer;
-  
+  cursor: pointer;
 }
 /* 
 .button:hover {
 
 } */
-  
-
-
 
 .block {
   z-index: 10;
@@ -258,22 +257,30 @@ button{
   margin-bottom: 210px;
   /* background: blue; */
 }
+.vSelect {
+  border-radius: 4px;
+  background: white;
+}
 .find {
   display: flex;
   justify-content: center;
   /* border: 5px solid red; */
   width: 100%;
   height: 556px;
-
+  margin-bottom: 20px;
 }
+
 .result {
   /* border: 5px solid blue; */
   width: 280px;
   height: 100%;
 }
 
-.container{
+/* .result img{
+width: 10%;
+} */
 
+.container {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -282,8 +289,32 @@ button{
   position: relative;
 }
 
-
 /* .container-fluid{
   margin-top: 400px;
 } */
+
+
+@media screen and (min-width: 480px) and (max-width: 767.9px) {
+  .acceuil-wrap {
+    background-image: none;
+  }
+  .wrap img {
+    z-index: -1;
+    width: 100%;
+  } 
+}
+
+@media screen and (max-width: 479.9px) {
+  .acceuil-wrap {
+    background-image: none;
+  }
+  .wrap, img {
+    z-index: -1;
+    width: 100%;
+  }
+  h4{
+    padding: 10px 10px;
+  }
+}
+
 </style>

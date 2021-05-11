@@ -8,17 +8,21 @@ import panier from '../views/panier.vue'
 import produit from '../views/produit.vue'
 import Paypal from '../components/Paypal.vue'
 import adminhomj from '../components/admin/home.vue'
-import devis from '../views/devis.vue'
+
 import profil from '../views/profil.vue'
 import commande from '../views/commande.vue'
 import propos from '../views/propos.vue'
+import validemail from '../views/validemail.vue'
+import pwdchange from '../views/pwdchange.vue'
+import sendforgetpwd from '../views/sendforgetpwd.vue'
+import backoffice from '../views/backoffice.vue'
+
 
 
 Vue.use(VueRouter)
 
 const routes = [{
-
-        name: "Accueil",
+        name: "accueil",
         path: "/accueil",
         component: () =>
             import ('../views/Accueil.vue')
@@ -44,10 +48,9 @@ const routes = [{
         component: register
     },
     {
-        path: "/validemail",
-        name: "/validemail",
-        component: () =>
-            import ("../components/validermail.vue"),
+        path: "/validemail/:email/:token",
+        name: "validemail",
+        component: validemail
     },
     {
         path: "/produit",
@@ -60,11 +63,11 @@ const routes = [{
         name: "panier",
         component: panier
     },
-    // changer P en Maj
+
     {
 
-        path: "/Paypal",
-        name: "Paypal",
+        path: "/paypal",
+        name: "paypal",
         component: Paypal
     },
     {
@@ -73,13 +76,6 @@ const routes = [{
         name: "adminhogin",
         component: adminhomj
     },
-    {
-
-        path: "/devis",
-        name: "devis",
-        component: devis
-    },
-
     {
 
         path: "/profil",
@@ -97,11 +93,30 @@ const routes = [{
         name: "propos",
         component: propos
     },
+    {
+
+        path: "/pwdchange/:id/:token",
+        name: "pwdchange",
+        component: pwdchange
+    },
+    {
+
+        path: "/sendforgetpwd",
+        name: "sendforgetpwd",
+        component: sendforgetpwd
+    },
+    {
+
+        path: "/backoffice",
+        name: "backoffice",
+        component: backoffice
+    },
+   
 
 
 ]
 
-
+// fais en sorte que le router devient global ?
 const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,

@@ -1,10 +1,10 @@
 <template>
-<!-- <div class="wrap"> -->
-  <ScaleRotate >
+<div class="wrap">
+  <Slide >
 
     <h3 v-if="login == true"> Vous êtes connecté en tant que {{decodedToken.email}} </h3>
     <h3 v-if="login == false"> Vous n'êtes pas connecté </h3>
-    
+
     <a href="/Accueil">
       <span>Accueil</span>
     </a>
@@ -13,19 +13,23 @@
     </a>
      <a href="/produit">
       <span>Produits</span>
-    </a> 
-      <!-- <a href="/produit">
-      <span>Dépannage serrurie</span>
-    </a>  -->
-    <a href="/devis">
-      <span>Devis</span>
-    </a> 
+    </a>
     <a href="/Panier">
-      <span>Panier</span>
+      <span>Mon Panier</span>
     </a>
      <a href="/profil">
-      <span>Mon profil</span>
-    </a> 
+      <span>Mon Profil</span>
+    </a>
+<!-- 1 Token décodé console.Log le token (déja fait dans un componant) -->
+<!-- 2 clg seulement status .status -->
+<!-- v-if user.status == admin -->
+
+    <a href="/backoffice" v-if="this.decodedToken.role == 'admin'">
+      <span>Back Office</span>
+    </a>
+     <!-- <a href="/validemail">
+      <span>valide mon email</span>
+    </a> -->
     <a href="/login" v-if="login == false">
       <span>Login</span>
     </a>
@@ -36,52 +40,26 @@
       <span>Logout</span>
     </a>
 
-  </ScaleRotate>
-<!--  -->
-  <!-- <div class="container">
-   
-    <h3 v-if="login == true"> Vous etes connecter en tant que {{decodedToken.email}} </h3>
-    <h3 v-if="login == false"> Vous n'etes pas connecter </h3>
-    <ul class="nav-list">
-      <li class="nav-item">
-        <a href="/" class="nav-link">Home</a>
-      </li> 
-       <li class="nav-item">
-        <a href="/produit" class="nav-link">Produit</a>
-      </li>  
-      <li class="nav-item">
-        <a href="/login" class="nav-link">LogIn</a>
-      </li>  
-      <li class="nav-item">
-        <a href="/register" class="nav-link">SignIn</a>
-      </li>    
-      <li class="nav-item">
-        <a href="#" v-on:click="logout" class="nav-link">Log Out</a>
-      </li> 
-    </ul>
-    </nav>
-  </div>
-</div> -->
+  </Slide>
 
+</div>
 </template>
 
 <script>
 import jwt_decode from "jwt-decode";
 // import { Slide } from 'vue-burger-menu'
 // import { PushRotate } from 'vue-burger-menu'
-import { ScaleRotate } from 'vue-burger-menu'
+import { Slide } from 'vue-burger-menu'
 
 function logout() {
   localStorage.removeItem('token');
-  this.$router.push({ name: "Accueil" });
+  window.location.replace("http://localhost:8080/accueil");
 }
 
 export default {
   name: "MyMenu",
   components: {
-    // Slide,
-    // PushRotate,
-    ScaleRotate,
+    Slide,
   },
   data() {
     return {
@@ -92,7 +70,8 @@ export default {
   methods: {
     logout,
   },
-  created() { // Verifier si le token a pas expirer 
+  created() { // Verifier si le token a pas expirer
+    // console.log("this.$router.currentRoute :>>" , this.$router.currentRoute);
     const mytoken = localStorage.getItem('token');
     console.log("mytoken = ", mytoken)
     if (mytoken)
@@ -100,11 +79,12 @@ export default {
       this.login = true;
       this.decodedToken = jwt_decode(mytoken);
       console.log("this.decodedToken = ", this.decodedToken);
+      console.log("this.decodedToken.role >> = ", this.decodedToken.role);
     }
   }
 }
 
-// const menuIcon = document.querySelector(".hamburger-menu");  
+// const menuIcon = document.querySelector(".hamburger-menu");
 // const navbar = document.querySelector(".navbar");
 
 // menuIcon.addEventListener("click", () => {
@@ -113,12 +93,15 @@ export default {
 
 </script>
 <style scoped>
+/* #bm-menu{
+  background-color: #2A2E33;
+} */
 
 h3{
   color:#0091CA;
   font-size: 20px;
+  margin-left: -30px;
   right: 100px;
-  
 }
 
 </style>
