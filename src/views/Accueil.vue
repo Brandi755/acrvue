@@ -215,7 +215,7 @@ export default {
 }
 .logoimg {
   width: 300px;
-  margin-top: 80px;
+  margin-top: 30px;
 }
 .logotitle {
   display: flex;
@@ -299,8 +299,7 @@ width: 10%;
     background-image: none;
   }
   .wrap img {
-    z-index: -1;
-    width: 100%;
+    width: 300px;
   } 
 }
 
@@ -315,6 +314,10 @@ width: 10%;
   h4{
     padding: 10px 10px;
   }
+  .logoimg {
+  width: 300px;
+  margin-top: 80px;
+}
 }
 
 </style>

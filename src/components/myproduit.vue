@@ -21,7 +21,7 @@
         
       </h3>
       <p class="text-block">{{ produit.description }}</p>
-      <h4 class="price">{{ produit.prix }}</h4>
+      <h4 class="price">{{ produit.prix }} €</h4>
     </div>
 <!-- la snackbar -->
     <div class="add-to-cart">

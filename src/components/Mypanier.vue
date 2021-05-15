@@ -11,11 +11,11 @@
       <table class="table">
         <thead class="bg-info-id">
           <tr>
-            <th>clé</th>
+            <th></th>
             <th>Nom</th>
-            <th>Quantite</th>
-            <th>prix</th>
-            <th>soustotal</th>
+            <th>Quantité</th>
+            <!-- <th>prix</th> -->
+            <th>Soustotal</th>
             <th>Supprimer</th>
           </tr>
         </thead>
@@ -47,7 +47,7 @@
                   />
                 </div>
               </td>
-            <td>{{ item.prix_unitaire }} €</td>
+            <!-- <td>{{ item.prix_unitaire }} €</td> -->
             <td>{{ (item.quantite * item.prix_unitaire).toFixed(2) }}€</td>
             <td>
               <button class="btn-bg-info-btn-block" @click="supprimer(index)">
@@ -56,7 +56,7 @@
             </td>
           </tr>
           <tr>
-            <td colspan="4"></td>
+            <td colspan="3"></td>
             <td>{{ total }}€</td>
             <td colspan="2"></td>
           </tr>
@@ -72,7 +72,7 @@
         </button>
       </div>
     </div>
-    <MyFooter />
+
   </div>
 </template>
 
@@ -162,7 +162,7 @@ export default {
 
 .logoimg {
   width: 300px;
-  margin-top: 80px;
+  margin-top: 30px;
 }
 
 .wrap {
@@ -290,14 +290,17 @@ td {
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 479.9px) {
-  .logo {
-    margin-left: 20vh;
-    margin-top: 0vh;
-  }
+@media screen and (max-width: 479.9px) {
+  .logo img {
+  width: 300px;
+  margin-top: 80px;
+  margin-left: 30px;
+
+}
 
   .btnValider {
-    margin-left: 25vh;
+    margin-left: 10vh;
+    margin-top: 5vh;
   }
   .paniertitre{
     margin-top: 5vh;
@@ -306,5 +309,12 @@ td {
   .imgcle {
   width: 5vh;
 }
+h4{
+  margin-left: 40px;
+}
+/* tr{
+  width: 100%;
+  background-color: red;
+} */
 }
 </style>

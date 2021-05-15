@@ -166,18 +166,34 @@ export default {
 <style scoped>
 .container-tab {
   padding: 10px;
+  margin-top: 10px;
 }
 
 
 
+@media screen and (min-width: 480px) and (max-width: 767.9px) {
+  .container-tab {
+  padding: 1px;
+ 
+}
+  
+}
 
 
 @media screen and (min-width: 320px) and (max-width: 479.9px) {
+
+.container-tab {
+  padding: 2px;
+ 
+}
 .v-card__actions{
   display: flex;
    flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+h1{
+  margin-top: 15%;
 }
 }
 </style>

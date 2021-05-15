@@ -70,7 +70,6 @@
         Login
       </v-btn>
     </div>
-
   </div>
 </template>
 
@@ -88,9 +87,13 @@ function validate() {
       prenom: this.prenom,
       adresse_livraison: this.adresse,
       adresse_facturation: this.adresseFacturation,
-      token:  this.myToken,
+      token: this.myToken
     };
-    if (this.checkbox == true || !this.adresseFacturation || this.adresseFacturation == "" ) {
+    if (
+      this.checkbox == true ||
+      !this.adresseFacturation ||
+      this.adresseFacturation == ""
+    ) {
       obj.adresse_facturation = this.adresse;
     }
     this.axios
@@ -113,7 +116,6 @@ function validate() {
           }
           // snackbar
           this.snackbar = true;
-          
         } else {
           console.log(
             "Error Myprofil.vue res.status != 200 || ! res.data.token"
@@ -153,7 +155,9 @@ export default {
       ],
       rulesAdr: [
         v => !!v || "Is required",
-        v => (v && v.length >= 10 && v.length <= 50) || "Must be above 10 characters and less than 50 characters"
+        v =>
+          (v && v.length >= 10 && v.length <= 50) ||
+          "Must be above 10 characters and less than 50 characters"
       ],
       myToken: null,
       decodedToken: {},
@@ -180,5 +184,20 @@ export default {
 <style scoped>
 .profil {
   padding: 5%;
+}
+.mr-4 {
+  margin-top: 5%;
+}
+
+@media screen and (min-width: 480px) and (max-width: 767.9px) {
+  .mr-4 {
+    margin-top: 25%;
+  }
+}
+
+@media screen and (max-width: 479.9px) {
+  .mr-4 {
+    margin-top: 25%;
+  }
 }
 </style>

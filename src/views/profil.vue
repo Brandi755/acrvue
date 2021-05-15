@@ -29,15 +29,16 @@ export default {
 .wrap {
   z-index: -1;
   width: 100%;
-  height: 100%;
+  height: 68%;
   justify-content: space-evenly;
-  background-image: url("../assets/voiture.png");
+  /* background-image: url("../assets/voiture.png"); */
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   /* background-color: #464646; */
 }
+
 .titre {
   margin: 0;
   padding: 0 0 20px;

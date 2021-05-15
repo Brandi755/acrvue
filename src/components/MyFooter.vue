@@ -21,20 +21,20 @@
           <div class="row">
             <!--Grid column-->
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">CONTACT</h5>
+              <h6 class="text-uppercase"><b>Compte client</b></h6>
 
               <ul class="list-unstyled mb-0">
                 <li>
-                  <a href="#!" class="text-white">du lundi au vendredi</a>
+                  <b>du lundi au vendredi</b>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">09:00 - 18:00</a>
+                  <b>09:00 - 18:00</b>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">07 66 56 75 21</a>
+                  <b>07 66 56 75 21</b>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">autoclérapide@gmail.fr</a>
+                  <b>autoclérapide@gmail.fr</b>
                 </li>
               </ul>
             </div>
@@ -42,21 +42,26 @@
 
             <!--Grid column-->
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">SERVICE</h5>
+              <h6 class="text-uppercase"><b>Compte client</b></h6>
 
               <ul class="list-unstyled mb-0">
                 <li>
-                  <a href="#!" class="text-white"
-                    >Reproduction de votre clé existante
+                  <a href="/register" class="text-white"
+                    ><b>Mon compte</b> 
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="text-white"
-                    >Clé télécommande ou double simple</a
-                  >
+                   <a href="/profil" class="text-white"
+                    ><b>Mon profil</b> 
+                  </a>
                 </li>
                 <li>
-                  <!-- <a href="#!" class="text-white">Reproduction de votre clé en cas de perte totale</a> -->
+                   <a href="/Panier" class="text-white"
+                    ><b>Mon panier</b> 
+                  </a>
+                </li>
+                  <li>
+                  <a href="/produit" class="text-white"><b>Nos produits</b></a>
                 </li>
                 <!-- <li>
                   <a href="#!" class="text-white">Ouverture sans destruction</a>
@@ -67,20 +72,14 @@
 
             <!--Grid column-->
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">Links</h5>
+              <h6 class="text-uppercase"><b>PAIEMENTS SÉCURISÉS</b></h6>
 
               <ul class="list-unstyled mb-0">
                 <li>
-                  <a href="#!" class="text-white">Link 1</a>
+                 <b>CB</b>
                 </li>
-                <li>
-                  <a href="#!" class="text-white">Link 2</a>
-                </li>
-                <li>
-                  <a href="#!" class="text-white">Link 3</a>
-                </li>
-                <li>
-                  <a href="#!" class="text-white">Link 4</a>
+                 <li>
+                 <b>Paypal</b>
                 </li>
               </ul>
             </div>
@@ -88,20 +87,12 @@
 
             <!--Grid column-->
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">Links</h5>
+              <h6 class="text-uppercase"><b>ENGAGEMENT QUALITÉ</b></h6>
 
               <ul class="list-unstyled mb-0">
+               
                 <li>
-                  <a href="#!" class="text-white">Link 1</a>
-                </li>
-                <li>
-                  <a href="#!" class="text-white">Link 2</a>
-                </li>
-                <li>
-                  <a href="#!" class="text-white">Link 3</a>
-                </li>
-                <li>
-                  <a href="#!" class="text-white">Link 4</a>
+                  <b>Autoclérapide s'engage <br> sur la qualité de ses produits</b>
                 </li>
               </ul>
             </div>
@@ -177,6 +168,6 @@ export default {
   color: #000000;
 }
 .list-unstyled {
-  color: rebeccapurple;
+  color: #ffffff;
 }
 </style>

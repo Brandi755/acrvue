@@ -1,16 +1,17 @@
 <template>
   <div class="wrap">
-
-     <div class="logo">
+    <div class="logo">
       <img src="../assets/logost.png" class="logoimg" />
-     </div>
+    </div>
 
     <div class="titre">
       <h4>Acheter votre clé en quelques clics</h4>
     </div>
-  
-    <!-- <img src="../assets/corbeille.png" class="imgp" /> -->
-    <span> <br><br> <b>Rechercher une marque spécifique</b> </span>
+
+    <span>
+      <br /><br />
+      <b>Rechercher une marque spécifique</b>
+    </span>
     <!-- barre recherche -->
     <div class="searchtest">
       <link
@@ -22,8 +23,7 @@
       <div class="containerS">
         <fieldset>
           <div class="input-group">
-            <div class="input-group-prepend">
-            </div>
+            <div class="input-group-prepend"></div>
             <!-- lien barre recherche -->
             <input
               id="oSaisie"
@@ -36,7 +36,9 @@
               v-on:keyup.enter="sendForm"
             />
             <div class="input-group-append">
-              <button class="btn btn-primary" @click="sendForm">Recherche</button>
+              <button class="btn btn-primary" @click="sendForm">
+                Recherche
+              </button>
             </div>
           </div>
         </fieldset>
@@ -66,12 +68,16 @@
 import MyProduit from "./MyProduit";
 import api from "./../server";
 
-
 function sendForm() {
   if (!this.marque) {
-    this.axios.get("http://localhost:3000/produit/all")
-      .then((res) => {this.produits = res.data.produits;})
-      .catch((err) => {alert(err);});
+    this.axios
+      .get("http://localhost:3000/produit/all")
+      .then(res => {
+        this.produits = res.data.produits;
+      })
+      .catch(err => {
+        alert(err);
+      });
   }
   const url = api + "/produit/findBy/" + this.marque;
   this.axios.get(url).then(response => {
@@ -86,23 +92,23 @@ export default {
   },
   data() {
     return {
-      marque: "",
+      marque: ""
     };
   },
   methods: {
-    sendForm,
+    sendForm
   },
   mounted() {}
 };
 </script>
 
 <style scoped>
-.logo img{
+.logo img {
   width: 300px;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
-.imgp{
+.imgp {
   width: 2%;
 }
 .text-block {
@@ -146,5 +152,15 @@ export default {
 .titre {
   align-items: center;
   margin-top: 90px;
+}
+@media screen and (max-width: 479.9px) {
+  .logo img {
+    width: 300px;
+    margin-top: 80px;
+  }
+
+  .titre {
+    margin-top: 60px;
+  }
 }
 </style>

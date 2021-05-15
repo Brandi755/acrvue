@@ -6,13 +6,8 @@
     </div>
     <div class="text">
       <p>
-        Notre société, AutoClérapide, est fondée sur l’idée de faciliter l’accès
-        aux télécommandes de déverrouillage d’origine. Nous nous spécialisons
-        dans la distribution de télécommandes de déverrouillage authentiques et
-        des clés à transpondeur d’origine. Grâce à notre réseau important de
-        partenaires réparti à travers le pays, nous pouvons fournir les produits
-        et le soutien technique qui répondront à tous vos besoins en sécurité
-        automobile.
+        Notre société, AutoClérapide,vous propose uniquement des produits automobiles de qualité et garantis
+        Coques de clés, bips, boîtiers, télécommandes, composants électroniques, outillages... Notre équipe de professionnels vous conseille dans l'achat de vos pièces automobiles. Vous pourrez trouver sur notre site tous les éléments dont vous avez besoin pour réparer simplement votre voiture, quel que soit son modèle ou sa marque. Tous les produits présentés sur notre site sont sélectionnés chez nos fournisseurs pour leur qualité. Que vous soyez un particulier ou un professionnel, vous trouverez tous les éléments dont vous avez besoin pour réparer votre véhicule facilement et sans vous ruiner. Si vous avez la moindre question technique, nos conseillers sont à votre disposition pour vous apporter les conseils et les réponses dont vous aurez besoin.
       </p>
       <!-- <p>Nous sommes une entreprise compétitive qui a pour vocation de trouver des solutions en cas de perte de clé, de réparation télécommande dans les meilleurs délais et au meilleur tarif</p>
       <p>Nous avons un champ d'action qui s'étend sur toute l'île-de-france Nous pouvons aussi nous déplacer au-delà pour cela veuillez bien l'indiquer lors de notre prise de contact au téléphone 06 07 89 89 89 ou sur le devis que nous vous proposons ici gratuit</p> -->
@@ -44,14 +39,13 @@ export default {
 }
 .logoimg {
   width: 300px;
-  margin-top: 80px;
+  margin-top: 30px;
 }
 .titre {
-  margin-top: 5vh;
+  margin-top: 4vh;
 }
 h2 {
   color: #0091ca;
-  font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
 }
 
@@ -71,7 +65,7 @@ h2 {
 }
 .paris img {
   width: 25%;
-  border-radius: 2%;
+  border-radius: 1%;
   margin-bottom: 5%;
   /* border: 3px solid #b2b2b2; */
 }
@@ -117,7 +111,7 @@ h2 {
   .text {
     position: relative;
     /* padding: 10px 10px 20px; */
-    border: #0091ca solid 3px;
+    /* border: #0091ca solid 3px; */
     margin: 5vh 3vh;
     padding: 1px 1px;
     /* 1 TOP 2 COTE */
@@ -128,7 +122,7 @@ h2 {
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 479.9px) {
+@media screen and (max-width: 479.9px) {
   .paris img {
     top: 5%;
     width: 60%;
@@ -141,6 +135,11 @@ h2 {
   padding: 5px 10px;
   /* 1 TOP 2 COTE */
   font-weight: bolder;
+  
+}
+  .logoimg {
+  width: 300px;
+  margin-top: 80px;
 }
 }
 </style>
