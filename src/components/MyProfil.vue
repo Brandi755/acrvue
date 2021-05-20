@@ -185,11 +185,11 @@ export default {
 .profil {
   padding: 5%;
 }
-.mr-4 {
-  margin-top: 5%;
-}
+/* .mr-4 {
+  margin-top: 75%;
+} */
 
-@media screen and (min-width: 480px) and (max-width: 767.9px) {
+@media screen and (min-width: 480px) and (max-width: 768px) {
   .mr-4 {
     margin-top: 25%;
   }

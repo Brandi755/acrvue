@@ -21,7 +21,7 @@
           <div class="row">
             <!--Grid column-->
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h6 class="text-uppercase"><b>Compte client</b></h6>
+              <h6 class="text-uppercase"><b>Service client</b></h6>
 
               <ul class="list-unstyled mb-0">
                 <li>

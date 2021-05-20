@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>My back Office</h1>
-    <v-btn @click="ToggleClient = !ToggleClient" color="success"> Toggle Clients / Commances </v-btn>
+    <v-btn @click="ToggleClient = !ToggleClient" color="success"> Clients / Commandes </v-btn>
     <TableClients v-if="ToggleClient == true" />
     <div v-if="ToggleClient == false">
       <div class="container-tab">

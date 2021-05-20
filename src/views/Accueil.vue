@@ -294,7 +294,7 @@ width: 10%;
 } */
 
 
-@media screen and (min-width: 480px) and (max-width: 767.9px) {
+@media screen and (min-width: 480px) and (max-width: 768px) {
   .acceuil-wrap {
     background-image: none;
   }

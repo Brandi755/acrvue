@@ -6,14 +6,12 @@
     </div>
     <div class="text">
       <p>
-        Notre société, AutoClérapide,vous propose uniquement des produits automobiles de qualité et garantis
-        Coques de clés, bips, boîtiers, télécommandes, composants électroniques, outillages... Notre équipe de professionnels vous conseille dans l'achat de vos pièces automobiles. Vous pourrez trouver sur notre site tous les éléments dont vous avez besoin pour réparer simplement votre voiture, quel que soit son modèle ou sa marque. Tous les produits présentés sur notre site sont sélectionnés chez nos fournisseurs pour leur qualité. Que vous soyez un particulier ou un professionnel, vous trouverez tous les éléments dont vous avez besoin pour réparer votre véhicule facilement et sans vous ruiner. Si vous avez la moindre question technique, nos conseillers sont à votre disposition pour vous apporter les conseils et les réponses dont vous aurez besoin.
+        Notre société, AutoClérapide,vous propose uniquement des télécommandes automobiles de qualité et garantis. <br>
+        Notre équipe de professionnels vous conseille dans l'achat de vos pièces. <br> Vous pourrez trouver sur notre site tous les éléments dont vous avez besoin pour réparer ou changer simplement votre télécommande, quel que soit son modèle ou sa marque. <br> Tous les produits présentés sur notre site sont sélectionnés chez nos fournisseurs pour leur qualité. Que vous soyez un particulier ou un professionnel, vous trouverez tous les éléments dont vous avez besoin facilement et sans vous ruiner.<br> Si vous avez la moindre question technique, nos conseillers sont à votre disposition pour vous apporter les conseils et les réponses dont vous aurez besoin.
       </p>
-      <!-- <p>Nous sommes une entreprise compétitive qui a pour vocation de trouver des solutions en cas de perte de clé, de réparation télécommande dans les meilleurs délais et au meilleur tarif</p>
-      <p>Nous avons un champ d'action qui s'étend sur toute l'île-de-france Nous pouvons aussi nous déplacer au-delà pour cela veuillez bien l'indiquer lors de notre prise de contact au téléphone 06 07 89 89 89 ou sur le devis que nous vous proposons ici gratuit</p> -->
     </div>
-    <div class="paris">
-      <img src="../assets/cle.png" alt="" width="500px" />
+    <div class="key">
+      <img src="../assets/cle.png" alt="cle" width="500px" />
     </div>
     <MyFooter />
   </div>
@@ -60,10 +58,11 @@ h2 {
   font-weight: bolder;
 }
 
-.paris {
-  top: 5%;
+.key {
+ /* margin-top: -50px; */
+ margin-bottom: 60px;
 }
-.paris img {
+.key img {
   width: 25%;
   border-radius: 1%;
   margin-bottom: 5%;
@@ -80,13 +79,12 @@ h2 {
   .text {
     position: relative;
     /* padding: 10px 10px 20px; */
-    border: #0091ca solid 3px;
     margin: 5vh 3vh;
     padding: 1px 1px;
     /* 1 TOP 2 COTE */
   }
 
-  .paris {
+  .key {
     top: 5%;
   }
 }
@@ -96,18 +94,17 @@ h2 {
   .text {
     position: relative;
     /* padding: 10px 10px 20px; */
-    border: #0091ca solid 3px;
     margin: 5vh 3vh;
     padding: 1px 1px;
     /* 1 TOP 2 COTE */
   }
 
-  .paris {
+  .key {
     top: 5%;
   }
 }
 
-@media screen and (min-width: 480px) and (max-width: 767.9px) {
+@media screen and (min-width: 480px) and (max-width: 768px) {
   .text {
     position: relative;
     /* padding: 10px 10px 20px; */
@@ -116,14 +113,14 @@ h2 {
     padding: 1px 1px;
     /* 1 TOP 2 COTE */
   }
-  .paris img {
+  .key img {
     top: 5%;
     width: 50%;
   }
 }
 
 @media screen and (max-width: 479.9px) {
-  .paris img {
+  .key img {
     top: 5%;
     width: 60%;
   }
