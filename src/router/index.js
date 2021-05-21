@@ -6,7 +6,6 @@ import register from '../components/register.vue'
 // import profil from '../components/profil.vue'
 import panier from '../views/panier.vue'
 import produit from '../views/produit.vue'
-import Paypal from '../components/Paypal.vue'
 import adminhomj from '../components/admin/home.vue'
 
 import profil from '../views/profil.vue'
@@ -16,6 +15,7 @@ import validemail from '../views/validemail.vue'
 import pwdchange from '../views/pwdchange.vue'
 import sendforgetpwd from '../views/sendforgetpwd.vue'
 import backoffice from '../views/backoffice.vue'
+import Paypal from '../components/paypal.vue'
 
 
 
