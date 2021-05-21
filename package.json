@@ -6,17 +6,19 @@
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
-        "start": "vue-cli-service serve"
+        "start": "node server.js"
     },
     "dependencies": {
         "axios": "^0.21.1",
         "bootstrap-vue": "^2.19.0",
         "braintree-web": "^3.55.0",
         "core-js": "^3.6.5",
+        "express": "^4.17.1",
         "jquery": "^1.9.1",
         "jwt-decode": "^3.1.2",
         "paypal-checkout": "^4.0.300",
         "register-service-worker": "^1.7.1",
+        "serve-static": "^1.14.1",
         "vue": "^2.6.11",
         "vue-axios": "^2.1.5",
         "vue-burger-menu": "^2.0.5",
