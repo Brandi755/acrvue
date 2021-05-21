@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import MyMenu from "./components/MyMenu.vue";
+import MyMenu from "./components/myMenu.vue";
 export default {
   components: {
     MyMenu

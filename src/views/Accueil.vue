@@ -61,7 +61,7 @@
 <script>
 import api from "./../server.js";
 import vSelect from "vue-select";
-import MyProduit from "./../components/MyProduit";
+import MyProduit from "./../components/myproduit";
 import MyFooter from "./../components/MyFooter";
 
 import "vue-select/dist/vue-select.css";

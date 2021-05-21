@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import MyProduit from "./MyProduit";
+import MyProduit from "./myproduit";
 import api from "./../server";
 
 function sendForm() {
