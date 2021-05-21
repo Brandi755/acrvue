@@ -1,7 +1,6 @@
 # très important certains types de fichier ou dossier ne seront jamais envoyé sur Git il va les ignorées 
 .DS_Store
 node_modules
-/dist
 
 # local env files
 .env.local
