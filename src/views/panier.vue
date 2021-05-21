@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import MyPanier from "../components/MyPanier";
+import MyPanier from "./../components/MyPanier";
 export default {
   components: {
     MyPanier,
