@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.e8e8558f3d9c4f0115be8333b9b41308.js"
+  "/precache-manifest.6882fd0ae06371eea623895e2a259575.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "acrvue"});

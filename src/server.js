@@ -1,7 +1,6 @@
-let api = "https://api-acr.herokuapp.com";
-console.log('process.env ', process.env);
-if (process.env.NODE_ENV == 'development') {
-  api = "http://localhost:3000";
+let api = "http://localhost:3000";
+if (process.env.PROD) {
+  api = "https://api-acr.herokuapp.com";
 }
 
 export default api;
