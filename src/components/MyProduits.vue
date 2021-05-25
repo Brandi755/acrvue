@@ -71,7 +71,7 @@ import api from "./../server";
 function sendForm() {
   if (!this.marque) {
     this.axios
-      .get("http://localhost:3000/produit/all")
+      .get(api + "/produit/all")
       .then(res => {
         this.produits = res.data.produits;
       })

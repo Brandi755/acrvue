@@ -13,6 +13,7 @@
 
 <script>
 import MyProduits from "../components/MyProduits";
+import api from "./../server";
 
 export default {
   data() {
@@ -25,7 +26,7 @@ export default {
   },
   mounted() {
     this.axios
-      .get("http://localhost:3000/produit/all")
+      .get(api + "/produit/all")
       .then(res => {
         this.produits = res.data.produits;
       })

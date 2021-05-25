@@ -7,7 +7,7 @@
       <div class="container-tab">
         <v-data-table :headers="headers" :items="datas" :items-per-page="5" sort-by="id" class="elevation-5">
           <template v-slot:item.info="{ item }">
-            <json-viewer boxed copyable :expand-depth="0" :value="item.info"></json-viewer>
+            <json-viewer boxed copyable :expand-depth="0" :value="JSON.parse(item.info)"></json-viewer>
           </template>
           <template v-slot:item.user="{ item }">
             <json-viewer boxed copyable :expand-depth="0" :value="item.user"></json-viewer>

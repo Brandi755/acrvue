@@ -53,7 +53,11 @@ import { Slide } from 'vue-burger-menu'
 
 function logout() {
   localStorage.removeItem('token');
-  window.location.replace("http://localhost:8080/accueil");
+  if (process.env.__DEV__) {
+    window.location.replace("http://localhost:8080/accueil");
+  } else {
+    window.location.replace("https://autoclerapide.herokuapp.com/Accueil");
+  }
 }
 
 export default {

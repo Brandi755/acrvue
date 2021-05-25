@@ -110,7 +110,7 @@ function afterMarque() {
 function afterModele() {
   this.annee = "";
   this.axios
-    .get("http://localhost:3000/produit/findBy/" + this.marque)
+    .get(api + "/produit/findBy/" + this.marque)
     .then(res => {
       if (res.data.produits) {
         if (res.data.produits.length >= 0) {
@@ -134,7 +134,7 @@ function afterModele() {
 
 function getMarque() {
   this.axios
-    .get("http://localhost:3000/produit/all/")
+    .get(api + "/produit/all/")
     .then(res => {
       if (res.data.produits) {
         res.data.produits.forEach(e => {
