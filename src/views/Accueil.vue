@@ -14,7 +14,7 @@
               <vSelect
                 class="vSelect"
                 :options="optionsMarque"
-                v-model="marque"
+                v-model=  "marque"
                 @input="afterMarque"
               />
             </div>
@@ -26,6 +26,7 @@
                 v-if="marque"
                 @input="afterModele"
               />
+              <!-- v-if="marque" si marque existe -->
             </div>
             <div class="form-group">
               <vSelect
@@ -44,10 +45,8 @@
             </button>
           </div>
         </div>
-        <!-- fin choix option -->
-        <!-------------- 3 ---------->
       </div>
-      <!-------------- composant qui s'affiche une fois le prduit trouve ---------->
+      <!-------------- composant qui s'affiche une fois le prduit trouvé---------->
       <div class="find" v-if="res.prix">
         <div class="result">
           <MyProduit :produit="res" />
@@ -59,18 +58,18 @@
 </template>
 
 <script>
+// api = http/localhost3000 qui est le lien de mon api
 import api from "./../server.js";
+// importation ici , si je veux global je met dans main.js
 import vSelect from "vue-select";
+// importation du composant produit pr utiliser dans le template comme le reste
 import MyProduit from "./../components/myproduit";
 import MyFooter from "./../components/MyFooter";
-
 import "vue-select/dist/vue-select.css";
-// test 
-// import MyFooter from "./../components/MyFooter";
 
-
+// fonction qui va envoyer nos choix marque, modele, annnee cette fonction va s'executer quand clik sur TROUVER
+// api est une variable contenant l'url de mon API dans server.js
 function sendForm() {
-  // alert(this.marque + " " + this.modele + " " + this.annee);
   const url = api + "/produit/findBy/" + this.marque;
   this.axios.get(url).then(response => {
     response.data.produits.forEach(e => {
@@ -132,6 +131,7 @@ function afterModele() {
     });
 }
 
+// ici dans la fonction j'utilise la route produit/all pour afficher toutes mes marques présente dans ma BD
 function getMarque() {
   this.axios
     .get(api + "/produit/all/")
@@ -150,19 +150,23 @@ function getMarque() {
       console.log("err:", err);
     });
 }
-
+// tous cela est exporté pour être utiliser dans le template
 export default {
   components: {
     vSelect,
     MyProduit,
-    MyFooter,
+    MyFooter
   },
+  // OBJETS
   methods: {
+    // raccourcis car meme nom, dans une clé et une valeur
+    //  sendForm :sendForm
     sendForm,
     afterModele,
     afterMarque,
     getMarque
   },
+  // FONCTION qui retourne des Objet 'par contre'
   data() {
     return {
       marque: "",
@@ -174,6 +178,7 @@ export default {
       res: {}
     };
   },
+  // FONCTIONS CYClE de vie
   mounted() {
     this.getMarque();
     // setTimeout(() => {
@@ -194,11 +199,10 @@ export default {
   width: 100%;
   height: auto;
   justify-content: space-between;
-
 }
 .acceuil-wrap {
-   display: flex;
-   flex-grow: 1;
+  display: flex;
+  flex-grow: 1;
   flex-direction: column;
   background-image: url("../assets/voiture.png");
   background-position: right top;
@@ -206,7 +210,6 @@ export default {
   /*background-attachment: fixed;*/
   background-size: auto 100%;
   background-color: white;
-
 }
 .img {
   position: absolute;
@@ -255,7 +258,6 @@ button {
   align-items: center;
   margin-top: 40px;
   margin-bottom: 210px;
-  /* background: blue; */
 }
 .vSelect {
   border-radius: 4px;
@@ -264,21 +266,15 @@ button {
 .find {
   display: flex;
   justify-content: center;
-  /* border: 5px solid red; */
   width: 100%;
   height: 556px;
   margin-bottom: 20px;
 }
 
 .result {
-  /* border: 5px solid blue; */
   width: 280px;
   height: 100%;
 }
-
-/* .result img{
-width: 10%;
-} */
 
 .container {
   display: flex;
@@ -293,31 +289,30 @@ width: 10%;
   margin-top: 400px;
 } */
 
-
 @media screen and (min-width: 480px) and (max-width: 768px) {
   .acceuil-wrap {
     background-image: none;
   }
   .wrap img {
     width: 300px;
-  } 
+  }
 }
 
 @media screen and (max-width: 479.9px) {
   .acceuil-wrap {
     background-image: none;
   }
-  .wrap, img {
+  .wrap,
+  img {
     z-index: -1;
     width: 100%;
   }
-  h4{
+  h4 {
     padding: 10px 10px;
   }
   .logoimg {
-  width: 300px;
-  margin-top: 80px;
+    width: 300px;
+    margin-top: 80px;
+  }
 }
-}
-
 </style>

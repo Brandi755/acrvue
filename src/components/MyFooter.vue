@@ -34,7 +34,7 @@
                   <b>07 66 56 75 21</b>
                 </li>
                 <li>
-                  <b>autoclérapide@gmail.fr</b>
+                  <b>autoclerapide@gmail.com</b>
                 </li>
               </ul>
             </div>

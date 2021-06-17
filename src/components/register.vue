@@ -39,12 +39,12 @@
                       v-on:keyup.enter="dologin"
                       v-model="passwordlogin"/>
                   </div>
-                  <div class="group">
+                  <!-- <div class="group">
                     <input id="check" type="checkbox" class="check" checked />
                     <label for="check"
                       ><span class="icon"></span> Gardez-moi connecté</label
                     >
-                  </div>
+                  </div> -->
                   <div class="group">
                     <button
                       class="button"

@@ -1,14 +1,13 @@
 <template>
   <div id="app">
     <v-app>
-      <!-- <p>hello</p> -->
       <MyMenu />
-
+      <!-- ?pour quoi id= page wrap ? -->
       <div id="page-wrap" class="wrap">
-        <router-view class="router-wrap"/>
+        <router-view class="router-wrap" />
       </div>
+      <!--  -->
     </v-app>
-
   </div>
 </template>
 

@@ -1,3 +1,4 @@
+// quand importation ici dans le main.js tout deviens global
 import Vue from 'vue';
 import App from './App.vue';
 import './registerServiceWorker';
