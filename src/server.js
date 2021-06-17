@@ -1,6 +1,6 @@
 let api = "http://localhost:3000";
-// if (process.env.PROD) {
-if (true) { // change to false for dev
+if (process.env.PROD || process.env.NODE_ENV == "production") {
+// if (true) { // change to false for dev
   api = "https://api-acr.herokuapp.com";
 }
 console.log("process.env", process.env);
