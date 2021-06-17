@@ -181,12 +181,6 @@ export default {
   // FONCTIONS CYClE de vie
   mounted() {
     this.getMarque();
-    // setTimeout(() => {
-    //   console.log('typeof res.prix :>> ', typeof  this.res.prix);
-    //   console.log(" §§§§ this.res", this.res);
-    // }, 6000);
-    // console.log('typeof res.prix :>> ', typeof  this.res.prix);
-    // console.log(" §§§§ this.res", this.res);
   }
 };
 </script>
