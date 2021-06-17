@@ -21,18 +21,25 @@ import Paypal from '../components/paypal.vue'
 
 Vue.use(VueRouter)
 
-const routes = [{
-        name: "accueil",
-        path: "/accueil",
-        component: () =>
-            import ('../views/Accueil.vue')
-    },
+const routes = [
     {
         name: '',
         path: '/',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
+        component: () =>
+            import ('../views/Accueil.vue')
+    },
+    {
+        name: '',
+        path: '',
+        component: () =>
+            import ('../views/Accueil.vue')
+    },
+    {
+        name: "accueil",
+        path: "/accueil",
         component: () =>
             import ('../views/Accueil.vue')
     },
